@@ -1,0 +1,68 @@
+body {
+  font-family: "ü‡ÉSÉVÉbÉN", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  background-color: #f8f5ef;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-family: "ü‡ñæí©", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  color: #2c2c2c;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+form, .container {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input, button, select {
+  font-size: 16px;
+  padding: 8px;
+  margin: 5px 0 15px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #486d46;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e5e3e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #aaa;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.license-badge {
+  display: inline-block;
+  background-color: #eee;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+}

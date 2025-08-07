@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>住民登録 - 篠山県役所</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <h1>住民登録フォーム</h1>
+  <form id="registerForm">
+    <label for="discordName">ディスコード名（例：name#1234）</label>
+    <input type="text" id="discordName" required>
+
+    <label for="mcid">Minecraft ID</label>
+    <input type="text" id="mcid" required>
+
+    <button type="submit">登録する</button>
+  </form>
+
+  <div id="result" class="container" style="display:none;">
+    <h2>登録が完了しました</h2>
+    <p><strong>住民番号：</strong><span id="residentIdDisplay"></span></p>
+  </div>
+
+  <script>
+    const form = document.getElementById("registerForm");
+    const resultBox = document.getElementById("result");
+    const residentIdDisplay = document.getElementById("residentIdDisplay");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const discordName = document.getElementById("discordName").value.trim();
+      const mcid = document.getElementById("mcid").value.trim();
+
+      // 入力チェック
+      if (!discordName || !mcid) {
+        alert("すべての項目を入力してください。");
+        return;
+      }
+
+      // ランダムな6桁IDを生成（重複は未考慮）
+      const residentId = Math.floor(100000 + Math.random() * 900000).toString();
+
+      // 重複チェック（同じDiscord名が既にあるか確認）
+      db.ref("residents").orderByChild("discordName").equalTo(discordName).once("value", snapshot => {
+        if (snapshot.exists()) {
+          alert("このディスコード名はすでに登録されています。");
+          return;
+        }
+
+        // Firebaseへ登録
+        db.ref("residents/" + residentId).set({
+          discordName: discordName,
+          mcid: mcid,
+          points: 0,
+          license: "免停（BAN）"
+        });
+
+        // 完了画面
+        residentIdDisplay.textContent = residentId;
+        resultBox.style.display = "block";
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>

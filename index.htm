@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>Z–¯“o˜^ - ÂRŒ§–ğŠ</title>
+  <title>ä½æ°‘ç™»éŒ² - ç¯ å±±çœŒå½¹æ‰€</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <!-- Firebase SDK -->
@@ -10,20 +10,20 @@
   <script src="firebase.js"></script>
 </head>
 <body>
-  <h1>Z–¯“o˜^ƒtƒH[ƒ€</h1>
+  <h1>ä½æ°‘ç™»éŒ²ãƒ•ã‚©ãƒ¼ãƒ </h1>
   <form id="registerForm">
-    <label for="discordName">ƒfƒBƒXƒR[ƒh–¼i—áFname#1234j</label>
+    <label for="discordName">ãƒ‡ã‚£ã‚¹ã‚³ãƒ¼ãƒ‰åï¼ˆä¾‹ï¼šname#1234ï¼‰</label>
     <input type="text" id="discordName" required>
 
     <label for="mcid">Minecraft ID</label>
     <input type="text" id="mcid" required>
 
-    <button type="submit">“o˜^‚·‚é</button>
+    <button type="submit">ç™»éŒ²ã™ã‚‹</button>
   </form>
 
   <div id="result" class="container" style="display:none;">
-    <h2>“o˜^‚ªŠ®—¹‚µ‚Ü‚µ‚½</h2>
-    <p><strong>Z–¯”Ô†F</strong><span id="residentIdDisplay"></span></p>
+    <h2>ç™»éŒ²ãŒå®Œäº†ã—ã¾ã—ãŸ</h2>
+    <p><strong>ä½æ°‘ç•ªå·ï¼š</strong><span id="residentIdDisplay"></span></p>
   </div>
 
   <script>
@@ -36,31 +36,31 @@
       const discordName = document.getElementById("discordName").value.trim();
       const mcid = document.getElementById("mcid").value.trim();
 
-      // “ü—Íƒ`ƒFƒbƒN
+      // å…¥åŠ›ãƒã‚§ãƒƒã‚¯
       if (!discordName || !mcid) {
-        alert("‚·‚×‚Ä‚Ì€–Ú‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+        alert("ã™ã¹ã¦ã®é …ç›®ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
         return;
       }
 
-      // ƒ‰ƒ“ƒ_ƒ€‚È6Œ…ID‚ğ¶¬id•¡‚Í–¢l—¶j
+      // ãƒ©ãƒ³ãƒ€ãƒ ãª6æ¡IDã‚’ç”Ÿæˆï¼ˆé‡è¤‡ã¯æœªè€ƒæ…®ï¼‰
       const residentId = Math.floor(100000 + Math.random() * 900000).toString();
 
-      // d•¡ƒ`ƒFƒbƒNi“¯‚¶Discord–¼‚ªŠù‚É‚ ‚é‚©Šm”Fj
+      // é‡è¤‡ãƒã‚§ãƒƒã‚¯ï¼ˆåŒã˜DiscordåãŒæ—¢ã«ã‚ã‚‹ã‹ç¢ºèªï¼‰
       db.ref("residents").orderByChild("discordName").equalTo(discordName).once("value", snapshot => {
         if (snapshot.exists()) {
-          alert("‚±‚ÌƒfƒBƒXƒR[ƒh–¼‚Í‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B");
+          alert("ã“ã®ãƒ‡ã‚£ã‚¹ã‚³ãƒ¼ãƒ‰åã¯ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚");
           return;
         }
 
-        // Firebase‚Ö“o˜^
+        // Firebaseã¸ç™»éŒ²
         db.ref("residents/" + residentId).set({
           discordName: discordName,
           mcid: mcid,
           points: 0,
-          license: "–Æ’âiBANj"
+          license: "å…åœï¼ˆBANï¼‰"
         });
 
-        // Š®—¹‰æ–Ê
+        // å®Œäº†ç”»é¢
         residentIdDisplay.textContent = residentId;
         resultBox.style.display = "block";
         form.reset();
@@ -69,3 +69,4 @@
   </script>
 </body>
 </html>
+
